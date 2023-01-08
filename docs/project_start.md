@@ -1,10 +1,8 @@
 ---
 title: "Project Specification"
-permalink: /docs/quick-start-guide/
-excerpt: ""
-last_modified_at: 2021-06-07T08:48:05-04:00
-redirect_from:
-  - /theme-setup/
+permalink: /docs/project_start/
+excerpt: "Project start"
+last_modified_at: 2023-01-07 10:58:00 +0100
 toc: true
 ---
 # Start of a new project
