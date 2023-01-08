@@ -27,8 +27,9 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  floriankdrone
 
 # Build settings
-remote_theme: olivier3lanc/Jekyll-LibDoc
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 plugins:
+  - jekyll-include-cache
 
 # Exclude from processing.
 # The following items will not be processed, by default.
