@@ -1,8 +1,6 @@
 main:
-  - title: "Posts"
-    url: /posts/
   - title: "FootFantasy"
-    url: /docs/footfantasy
+    url: /docs/project_start/
   - title: "About"
     url: /about/
 
