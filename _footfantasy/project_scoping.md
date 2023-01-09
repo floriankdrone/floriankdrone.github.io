@@ -1,7 +1,6 @@
 ---
 title: "Project Scoping"
-permalink: /docs/project_start/
-excerpt: "Project start"
+excerpt: "Project scoping"
 last_modified_at: 2023-01-09 11:16:00 +0100
 toc: true
 ---

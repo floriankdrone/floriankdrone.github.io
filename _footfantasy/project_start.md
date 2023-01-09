@@ -1,6 +1,5 @@
 ---
 title: "Project Specification"
-permalink: /docs/project_start/
 excerpt: "Project start"
 last_modified_at: 2023-01-07 10:58:00 +0100
 toc: true

@@ -1,14 +1,12 @@
 main:
   - title: "Secret Project"
-    url: /docs/project_start/
-  - title: "About"
-    url: /about/
+    url: /footfantasy/project_start/
 
 # sidebar navigation list sample
-docs:
+footfantasy:
   - title: "Project Description"
     children:
       - title: "Project start"
-        url: /docs/project_start/
+        url: /footfantasy/project_start/
       - title: "Project scoping"
-        url: /docs/project_scoping/
+        url: /footfantasy/project_scoping/
