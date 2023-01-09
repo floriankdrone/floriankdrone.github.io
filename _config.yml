@@ -18,8 +18,9 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: My Blog
-email: florian.kdrone@gmail.com
+title: "A Developer's journey"
+name: &name "Florian Dutronc"
+email: &email "florian.kdrone@gmail.com"
 description: >- # this means to ignore newlines until "baseurl:"
   I am an passionate developer writing about tech projects and stuff. 
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -50,6 +51,8 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+author:
+  name: *name
 include: ["_pages"]
 defaults:
   # _docs
@@ -57,11 +60,16 @@ defaults:
       path: ""
       type: docs
     values:
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comments: false
       sidebar:
         nav: "docs"
   # _pages
   - scope:
-      path: ""
+      path: "_pages"
       type: pages
     values:
       layout: single
