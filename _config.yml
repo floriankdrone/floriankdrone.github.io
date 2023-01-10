@@ -36,6 +36,7 @@ locale: "en-US"
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 plugins:
   - jekyll-include-cache
+  - jekyll-mermaid
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -65,6 +66,9 @@ collections:
   footfantasy:
     output: true
     permalink: /:collection/:path/
+
+mermaid:
+  src: 'https://unpkg.com/browse/mermaid@9.3.0/dist/mermaid.js'
 
 defaults:
   - scope:

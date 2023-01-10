@@ -4,6 +4,7 @@ excerpt: "Project scoping"
 last_modified_at: 2023-01-09 11:16:00 +0100
 toc: true
 ---
+<script src="/assets/js/mermaid.min.js"></script>
 # Description
 We want to create a football fantasy app.
 A football fantasy game consists of choosing players every weeks and going against other players. The winner of the match is decided according to the grades of the player chosen.
@@ -11,7 +12,7 @@ A football fantasy game consists of choosing players every weeks and going again
 ## Phases
 The game consists of multiple phases.
 
-```mermaid
+<div class="mermaid">
 flowchart TD
   open_ff(Open FF website) --> signup(Create account)
   accept_mail_invitation(Accept Invitation in email) --> signup
@@ -28,7 +29,7 @@ flowchart TD
   play_match --> any_game_left{Are there games left ?}
   any_game_left -- yes --> player_selection
   any_game_left -- no --> league_finished(League is finished)
-```
+</div>
 
 ### Account Creation
 ### League Creation
