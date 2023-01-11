@@ -13,22 +13,35 @@ A football fantasy game consists of choosing players every weeks and going again
 
 <div class="mermaid">
 flowchart TD
-  open_ff(Open FF website)
-  accept_mail_invitation(Accept Invitation in email)
-  accept_invitation(Accept invitation on website)
-  subgraph account_creation
-  signup(Create account)
+  open_ff[\Open FF website/]
+  accept_mail_invitation[\Accept Invitation in email/]
+  accept_invitation[\Accept invitation on website/]
+  is_authenticated{Is Authenticated?}
+  has_account{Has Account?}
+  login(Login)
+  open_ff --> is_authenticated
+  accept_mail_invitation -.-> is_authenticated
+  subgraph authentication
+  is_authenticated -- no --> has_account
+  is_authenticated -. no .-> has_account  
+  has_account -- yes --> login
+  has_account -- no --> signup
+  has_account -. yes .-> login
+  has_account -. no .-> signup
   end
-  open_ff --> account_creation
-  accept_mail_invitation --> account_creation
+  is_authenticated -- yes --> home_page[/Home page/]
+  is_authenticated -. yes .-> league_page[/League page/]
   subgraph league_creation
   create_league(Create league)
-  create_league --> invite_others(Invite other people)
+  create_league --> league_page
+  league_page --> invite_others(Invite other people)
   accept_invitation --> is_league_full
   invite_others --> is_league_full{Is the league full?}
   is_league_full -- no --> invite_others
   end
-  account_creation --> league_creation
+  signup --> home_page
+  login --> home_page
+  home_page --> league_creation
   subgraph transfers
     transfer_round(Biding on players)
     transfer_round --> teams_are_completed{Are teams completed?}
@@ -46,7 +59,28 @@ flowchart TD
   any_game_left -- no --> league_finished(League is finished)
 </div>
 
-### Account Creation
+### Account Creation Flow
+
+Simple signup page.
+We should ask for:
+- email
+- password
+- repeat_password
+- username
+- dob
+
+Should enforce some password rules.
+Should generate default usernames
+Should generate authentication token once signed up
+Should create authentication and account entry in database.
+
+### Login Flow
+
+Simple login page with email and password.
+
+Should generate authentication token
+It should be the page to be redirected to if not authenticated
+
 ### League Creation
 ### League Invitations
 ### Transfers

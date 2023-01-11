@@ -16,9 +16,9 @@ Watcher with elastic search
 ### Flow Chart
 <div class="mermaid">
 graph LR
-    kafka(Kafka) --> logstash(Logstash)
-    data_source(Data Source) --> logstash
-    logstash --> elasticsearch(Elasticsearch)
+    kafka>Kafka] --> logstash(Logstash)
+    data_source>Data Source] --> logstash
+    logstash --> elasticsearch[(Elasticsearch)]
     kibana(Kibana) --> elasticsearch
 </div>
 
