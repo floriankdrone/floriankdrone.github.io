@@ -2,7 +2,6 @@ main:
   - title: "Secret Project"
     url: /footfantasy/project_start/
 
-# sidebar navigation list sample
 footfantasy:
   - title: "Project Description"
     children:
@@ -12,3 +11,5 @@ footfantasy:
         url: /footfantasy/project_scoping/
       - title: "Project tooling"
         url: /footfantasy/project_tools/
+      - title: "Project guidelines"
+        url: /footfantasy/project_guidelines/
