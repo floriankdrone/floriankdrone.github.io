@@ -10,3 +10,5 @@ footfantasy:
         url: /footfantasy/project_start/
       - title: "Project scoping"
         url: /footfantasy/project_scoping/
+      - title: "Project tooling"
+        url: /footfantasy/project_tools/
