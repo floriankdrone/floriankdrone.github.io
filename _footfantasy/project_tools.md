@@ -6,15 +6,12 @@ toc: true
 ---
 ## Development
 VSCode
-## Errors
-Should we use error tracking or analyzing logs ?
+## Alerting
 ### GlitchTip
 [Documentation](https://glitchtip.com/documentation)
-For error tracking
-## Logging
+For error alerting
+## Monitoring
 Kibana
-Elasticsearch
-## Metrics
 Elasticsearch
 Logstash
 Graphana
