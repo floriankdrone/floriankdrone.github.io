@@ -74,6 +74,16 @@ Should generate default usernames
 Should generate authentication token once signed up
 Should create authentication and account entry in database.
 
+<div class="mermaid">
+sequenceDiagram
+  participant SP as Signup Page
+  participant Auth as Authentication
+  participant A as Account
+  SP->>+Auth: POST /authentication/create
+  Auth->>A: Create account after creating auth
+  Auth->>-SP: Authentication Token
+</div>
+
 ### Login Flow
 
 Simple login page with email and password.
@@ -81,7 +91,18 @@ Simple login page with email and password.
 Should generate authentication token
 It should be the page to be redirected to if not authenticated
 
+<div class="mermaid">
+sequenceDiagram
+  participant LP as Login Page
+  participant Auth as Authentication
+  SP->>Auth: POST /authentication/create 
+  Auth->>SP: Authentication Token
+</div>
+
 ### League Creation
+
+Create a league
+
 ### League Invitations
 ### Transfers
 ### League Start
