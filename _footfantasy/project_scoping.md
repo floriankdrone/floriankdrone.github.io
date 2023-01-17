@@ -95,8 +95,8 @@ It should be the page to be redirected to if not authenticated
 sequenceDiagram
   participant LP as Login Page
   participant Auth as Authentication
-  SP->>Auth: POST /authentication/create 
-  Auth->>SP: Authentication Token
+  LP->>Auth: POST /authentication/create 
+  Auth->>LP: Authentication Token
 </div>
 
 ### League Creation
