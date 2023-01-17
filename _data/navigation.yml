@@ -13,3 +13,9 @@ footfantasy:
         url: /footfantasy/project_tools/
       - title: "Project guidelines"
         url: /footfantasy/project_guidelines/
+  - title: "Systen Design"
+    children:
+      - title: "Authentication"
+        url: /footfantasy/design_authentication/
+      - title: "Account"
+        url: /footfantasy/design_account/

@@ -74,14 +74,39 @@ Should generate default usernames
 Should generate authentication token once signed up
 Should create authentication and account entry in database.
 
+The flow would look like this:
 <div class="mermaid">
 sequenceDiagram
   participant SP as Signup Page
+  participant AuthC as AuthenticationsController
   participant Auth as Authentication
   participant A as Account
-  SP->>+Auth: POST /authentication/create
-  Auth->>A: Create account after creating auth
-  Auth->>-SP: Authentication Token
+  SP->>AuthC: POST /authentication/create
+  AuthC->>+Auth: New auth
+  AuthC->>Auth: validate params
+  AuthC->>Auth: save!
+  Auth->>A: Create account with form params using `accepts_nested_attributes_for`
+  AuthC->>Auth: generate authentication token
+  Auth->>-AuthC: Authentication Token
+  AuthC->>SP: Return JSON with authentication token
+</div>
+
+The class diagram would look like this:
+<div class="mermaid">
+classDiagram
+  class Account~ActiveRecord~{
+    +String username
+    +Image avatar
+    +Date dob
+  }
+  class Authentication~ActiveRecord~{
+    +Email email
+    +String password
+    -encode() string
+    -decode() string
+    -generate_token() string
+  }
+  Account "1" -- "1" Authentication
 </div>
 
 ### Login Flow
