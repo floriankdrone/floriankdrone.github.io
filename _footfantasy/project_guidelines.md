@@ -11,3 +11,7 @@ https://commitizen.github.io/cz-cli/
 ### Our endpoints
 We should monitor time it took to answer a query
 https://blog.appoptics.com/monitoring-rails-get-hidden-metrics-rails-app/
+
+## Linting
+
+## Test strategy

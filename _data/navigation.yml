@@ -1,10 +1,12 @@
 main:
   - title: "Secret Project"
-    url: /footfantasy/project_start/
+    url: /footfantasy/project_roadmap/
 
 footfantasy:
   - title: "Project Description"
     children:
+      - title: "Project roadmap"
+        url: /footfantasy/project_roadmap/
       - title: "Project start"
         url: /footfantasy/project_start/
       - title: "Project scoping"
