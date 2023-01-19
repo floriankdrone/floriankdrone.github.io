@@ -16,3 +16,40 @@ classDiagram
     -generate_token() string
   }
 </div>
+
+This model should:
+    - validate the email/password
+    - encrypt password
+    - store email and password
+    - generate authentication via cookie
+
+## Email
+
+We will use the [valid_email2](https://github.com/micke/valid_email2) gem for email validation (regex + domain).
+
+## Password
+
+### Password rules
+
+- Passwords will contain at least 6 characters in length
+- Passwords will contain at least 1 upper and 1 lower case letter
+- Passwords will contain at least 1 number
+- Passwords will contain at least given special characters 
+
+Regex: `/^.*(?=.{6,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$/`
+
+> We decided __not__ to add an additional confirmation password.
+First thought, its one more field in the form and it can create frustration to log in. 
+> Here is a [case study](https://www.zuko.io/blog/should-you-use-confirm-password-on-your-forms-and-websites-case-study) that proves it.
+
+### Encryption
+
+Password should be encrypted.
+Luckily ActiveRecords has a tool for that: https://edgeguides.rubyonrails.org/active_record_encryption.html
+> We can also look at [this](https://api.rubyonrails.org/v6.0.3.2/classes/ActiveSupport/MessageEncryptor.html)
+
+## Generate Token
+
+We should generate an authentication token.
+> According to [this article](https://blog.logrocket.com/jwt-authentication-best-practices/#whyyoushouldnt) __it should not be JWT__
+A session cookie should be given back to the client. A description of how session work in rails can be found [here](https://guides.rubyonrails.org/action_controller_overview.html#session)
