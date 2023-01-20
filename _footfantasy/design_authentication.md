@@ -11,7 +11,6 @@ classDiagram
   class Authentication~ActiveRecord~{
     +Email email
     +String password
-    +generate_session() string
   }
 </div>
 
