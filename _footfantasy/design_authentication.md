@@ -11,17 +11,15 @@ classDiagram
   class Authentication~ActiveRecord~{
     +Email email
     +String password
-    -encode() string
-    -decode() string
-    -generate_token() string
+    +generate_session() string
   }
 </div>
 
-This model should:
-    - validate the email/password
-    - encrypt password
-    - store email and password
-    - generate authentication via cookie
+This model should have these capabilities:
+- validate the email/password
+- encrypt password
+- store email and password
+- generate authentication via cookie
 
 ## Email
 
@@ -45,11 +43,12 @@ First thought, its one more field in the form and it can create frustration to l
 ### Encryption
 
 Password should be encrypted.
-Luckily ActiveRecords has a tool for that: https://edgeguides.rubyonrails.org/active_record_encryption.html
+Luckily ActiveRecords has a tool for that: [https://edgeguides.rubyonrails.org/active_record_encryption.html]
 > We can also look at [this](https://api.rubyonrails.org/v6.0.3.2/classes/ActiveSupport/MessageEncryptor.html)
 
-## Generate Token
+## Generate Session
 
-We should generate an authentication token.
+We should generate a session.
 > According to [this article](https://blog.logrocket.com/jwt-authentication-best-practices/#whyyoushouldnt) __it should not be JWT__
-A session cookie should be given back to the client. A description of how session work in rails can be found [here](https://guides.rubyonrails.org/action_controller_overview.html#session)
+A session cookie should be given back to the client.
+A description of how session work in rails can be found [here](https://guides.rubyonrails.org/action_controller_overview.html#session) and [here](https://guides.rubyonrails.org/security.html#what-are-sessions-questionmark)
