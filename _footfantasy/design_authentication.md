@@ -18,6 +18,8 @@ This model should have these capabilities:
 - validate the email/password
 - encrypt password
 - store email and password
+
+It's controller should:
 - generate authentication via cookie
 
 ## Email
