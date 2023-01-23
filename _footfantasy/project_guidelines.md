@@ -15,3 +15,7 @@ https://blog.appoptics.com/monitoring-rails-get-hidden-metrics-rails-app/
 ## Linting
 
 ## Test strategy
+
+## Static code analyser
+
+I am using rubocop since it is the gem I am most confortable with as static code analyzer

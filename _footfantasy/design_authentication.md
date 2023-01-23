@@ -53,3 +53,7 @@ We should generate a session.
 > According to [this article](https://blog.logrocket.com/jwt-authentication-best-practices/#whyyoushouldnt) __it should not be JWT__
 A session cookie should be given back to the client.
 A description of how session work in rails can be found [here](https://guides.rubyonrails.org/action_controller_overview.html#session) and [here](https://guides.rubyonrails.org/security.html#what-are-sessions-questionmark)
+
+## Post authentication creation
+
+- Verify email
