@@ -57,3 +57,11 @@ A description of how session work in rails can be found [here](https://guides.ru
 ## Post authentication creation
 
 - Verify email
+
+<div class="mermaid">
+classDiagram
+  class Authentication~ActiveRecord~{
+    +Email email
+    +String password
+  }
+</div>
