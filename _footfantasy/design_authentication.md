@@ -54,6 +54,11 @@ We should generate a session.
 A session cookie should be given back to the client.
 A description of how session work in rails can be found [here](https://guides.rubyonrails.org/action_controller_overview.html#session) and [here](https://guides.rubyonrails.org/security.html#what-are-sessions-questionmark)
 
+### Session duration
+
+How long does the CSRF token stay active?
+How long should we keep the session active
+
 ## Post authentication creation
 
 - Verify email
@@ -65,3 +70,9 @@ classDiagram
     +String password
   }
 </div>
+
+## Post authentication creation
+
+- Verify email
+
+## Manage authentication across the whole app
