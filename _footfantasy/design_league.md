@@ -40,6 +40,8 @@ classDiagram
     +ParticipationStatuses status
     +ParticipationRoles role
     +String email
+    +Number league_id
+    +Number account_id
   }
 League --\* LeagueParticipation
 </div>
