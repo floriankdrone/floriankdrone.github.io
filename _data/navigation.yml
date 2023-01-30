@@ -21,3 +21,11 @@ footfantasy:
         url: /footfantasy/design_authentication/
       - title: "Account"
         url: /footfantasy/design_account/
+      - title: "League"
+        url: /footfantasy/design_league/
+  - title: "Action Design"
+    children:
+      - title: "Signup"
+        url: /footfantasy/design_signup/
+      - title: "Login"
+        url: /footfantasy/design_login/
