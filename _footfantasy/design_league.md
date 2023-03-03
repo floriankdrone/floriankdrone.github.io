@@ -43,5 +43,5 @@ classDiagram
     +Number league_id
     +Number account_id
   }
-League --\* LeagueParticipation
+League --* LeagueParticipation
 </div>
