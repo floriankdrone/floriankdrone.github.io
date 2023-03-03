@@ -15,6 +15,10 @@ footfantasy:
         url: /footfantasy/project_tools/
       - title: "Project guidelines"
         url: /footfantasy/project_guidelines/
+      - title: "Project testing strategy"
+        url: /footfantasy/project_testing_strategy/
+      - title: "Project infrastructure"
+        url: /footfantasy/project_infrastructure/
   - title: "Systen Design"
     children:
       - title: "Authentication"
