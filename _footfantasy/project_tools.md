@@ -9,6 +9,10 @@ toc: true
 ## Development
 VSCode
 
+## Source Code versioning
+
+After doing some investigation, hosting a self hosted code versioning service (GitLab) would be too costly since it needs a raspberry 4 a minima. We can use github for now.
+
 ## Alerting
 Watcher with elastic search
 
