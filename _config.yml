@@ -33,7 +33,8 @@ url: https://floriankdrone.github.io
 locale: "en-US"
 
 # Build settings
-remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+# remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+remote_theme: "dirkfabisch/mediator"
 plugins:
   - jekyll-include-cache
 
