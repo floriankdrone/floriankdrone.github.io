@@ -1,6 +1,8 @@
 main:
-  - title: "Secret Project"
-    url: /footfantasy/project_roadmap/
+  - title: "Posts"
+    url: /posts
+#  - title: "Secret Project"
+#    url: /footfantasy/project_roadmap/
 
 footfantasy:
   - title: "Project Description"
