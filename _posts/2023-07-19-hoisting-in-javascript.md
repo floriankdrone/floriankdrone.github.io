@@ -21,9 +21,9 @@ function sum(a: number, b: number): number {
 
 ### The Javascript Interpreter
 
-Wikipedia states
+Wikipedia states:
 
-> An interpreter is a computer program that directly executes instructions written in a programming or scripting language without requiring them previously to have been compiled into a machine language program. It translates one Statement at a time.
+> _"An interpreter is a computer program that directly executes instructions written in a programming or scripting language without requiring them previously to have been compiled into a machine language program. It translates one Statement at a time."_
 
 #### Phases
 
@@ -31,15 +31,15 @@ Wikipedia states
 
 ##### Tokenizing
 
-Breaking up a source code string into meaningful chunks called, Tokens. For example, the source code var age = 7; can be tokenize as, var, age, =, 7 and, ;.
+Breaking up a source code string into meaningful chunks called, **Tokens**. For example, the source code var age = 7; can be tokenize as, var, age, =, 7 and, ;.
 
 ##### Parsing
 
-Parsing is a methodology to take the array of Tokens as input and turn it into a tree of nested elements understood by the grammar of the programming language. This tree is called Abstract Syntax Tree(AST).
+Parsing is a methodology to take the array of Tokens as input and turn it into a tree of nested elements understood by the grammar of the programming language. This tree is called Abstract Syntax Tree (AST).
 
 ##### Code Generation
 
-In this phase, the AST is used as input, and an executable byte-code is generated that is understood by the environment(or platform) where the executable code will be running. The executable byte-code is then refined/converted even further by the optimizing JIT (Just-In-Time) compiler.
+In this phase, the **A**bstract **S**yntax **T**ree is used as input, and an executable byte-code is generated that is understood by the environment(or platform) where the executable code will be running. The executable byte-code is then refined/converted even further by the optimizing JIT (Just-In-Time) compiler.
 
 <!-- > This is called function hoisting
 
