@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>$ whoami - Florian Dutronc - Developer Resume</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #1e1e1e;
+        font-family: "Consolas", "Monaco", "Courier New", monospace;
+        color: #d4d4d4;
+        line-height: 1.6;
+      }
+
+      /* Terminal Window */
+      .terminal-window {
+        max-width: 1200px;
+        margin: 40px auto;
+        background: #1e1e1e;
+        border-radius: 10px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        overflow: hidden;
+        border: 1px solid #3c3c3c;
+      }
+
+      /* Window controls */
+      .window-controls {
+        background: #323233;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .control-btn {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      .control-btn.close {
+        background: #ff5f56;
+      }
+      .control-btn.minimize {
+        background: #ffbd2e;
+      }
+      .control-btn.maximize {
+        background: #27c93f;
+      }
+
+      .window-title {
+        margin-left: 15px;
+        font-size: 13px;
+        color: #999;
+      }
+
+      /* Tab bar */
+      .tab-bar {
+        background: #252526;
+        display: flex;
+        border-bottom: 1px solid #3c3c3c;
+      }
+
+      .tab {
+        padding: 12px 20px;
+        color: #969696;
+        cursor: pointer;
+        border-right: 1px solid #3c3c3c;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s;
+      }
+
+      .tab.active {
+        background: #1e1e1e;
+        color: #d4d4d4;
+      }
+
+      .tab:hover {
+        background: #2d2d30;
+      }
+
+      .tab i {
+        font-size: 14px;
+      }
+
+      .js-color {
+        color: #f0db4f;
+      }
+      .ruby-color {
+        color: #cc342d;
+      }
+      .python-color {
+        color: #4b8bbe;
+      }
+
+      /* Content area */
+      .content {
+        padding: 30px;
+        min-height: 600px;
+      }
+
+      /* Code block styling */
+      .code-block {
+        background: #252526;
+        border-left: 3px solid #007acc;
+        padding: 20px;
+        margin-bottom: 25px;
+        border-radius: 4px;
+        position: relative;
+      }
+
+      .code-block.ruby {
+        border-left-color: #cc342d;
+      }
+
+      .code-block.python {
+        border-left-color: #4b8bbe;
+      }
+
+      .code-block.javascript {
+        border-left-color: #f0db4f;
+      }
+
+      /* Syntax highlighting */
+      .keyword {
+        color: #569cd6;
+      }
+      .string {
+        color: #ce9178;
+      }
+      .function {
+        color: #dcdcaa;
+      }
+      .comment {
+        color: #6a9955;
+        font-style: italic;
+      }
+      .variable {
+        color: #9cdcfe;
+      }
+      .class-name {
+        color: #4ec9b0;
+      }
+      .number {
+        color: #b5cea8;
+      }
+
+      /* Header */
+      .header {
+        margin-bottom: 30px;
+      }
+
+      .header h1 {
+        font-size: 2em;
+        color: #4ec9b0;
+        margin-bottom: 10px;
+      }
+
+      .header h1::before {
+        content: "> ";
+        color: #569cd6;
+      }
+
+      .role {
+        color: #ce9178;
+        font-size: 1.2em;
+        margin-bottom: 15px;
+      }
+
+      .contact-line {
+        color: #6a9955;
+        margin: 5px 0;
+      }
+
+      .contact-line a {
+        color: #9cdcfe;
+        text-decoration: none;
+      }
+
+      .contact-line a:hover {
+        text-decoration: underline;
+      }
+
+      /* Section titles */
+      .section {
+        margin-bottom: 40px;
+      }
+
+      .section-title {
+        color: #dcdcaa;
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .section-title::before {
+        content: "function ";
+        color: #569cd6;
+      }
+
+      .section-title::after {
+        content: "() {";
+        color: #d4d4d4;
+      }
+
+      .section-end {
+        color: #d4d4d4;
+        margin-top: 15px;
+      }
+
+      /* Summary */
+      .summary {
+        background: #252526;
+        padding: 20px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        border-left: 3px solid #4ec9b0;
+      }
+
+      .summary::before {
+        content: "/** ";
+        color: #6a9955;
+        display: block;
+      }
+
+      .summary::after {
+        content: " */";
+        color: #6a9955;
+        display: block;
+      }
+
+      /* Experience */
+      .experience-item {
+        margin-bottom: 30px;
+        padding-left: 20px;
+        border-left: 2px solid #3c3c3c;
+      }
+
+      .job-title-line {
+        margin-bottom: 10px;
+      }
+
+      .const {
+        color: #569cd6;
+      }
+      .job-title {
+        color: #4ec9b0;
+      }
+      .company {
+        color: #ce9178;
+      }
+      .duration {
+        color: #b5cea8;
+      }
+
+      .responsibility {
+        color: #d4d4d4;
+        margin-left: 20px;
+        margin-bottom: 8px;
+        position: relative;
+      }
+
+      .responsibility::before {
+        content: "//";
+        color: #6a9955;
+        position: absolute;
+        left: -20px;
+      }
+
+      /* Skills */
+      .skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .skill-group {
+        background: #252526;
+        padding: 20px;
+        border-radius: 4px;
+        border-top: 3px solid #007acc;
+      }
+
+      .skill-group.ruby {
+        border-top-color: #cc342d;
+      }
+      .skill-group.python {
+        border-top-color: #4b8bbe;
+      }
+      .skill-group.javascript {
+        border-top-color: #f0db4f;
+      }
+
+      .skill-group-title {
+        color: #dcdcaa;
+        margin-bottom: 15px;
+        font-size: 1.1em;
+      }
+
+      .skill-item {
+        display: inline-block;
+        background: #1e1e1e;
+        padding: 6px 12px;
+        margin: 5px 5px 5px 0;
+        border-radius: 3px;
+        font-size: 0.9em;
+        border: 1px solid #3c3c3c;
+        transition: all 0.3s;
+      }
+
+      .skill-item:hover {
+        border-color: #007acc;
+        transform: translateY(-2px);
+      }
+
+      /* Projects */
+      .project-card {
+        background: #252526;
+        padding: 25px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        border-left: 4px solid #007acc;
+        transition: all 0.3s;
+      }
+
+      .project-card:hover {
+        border-left-width: 8px;
+        transform: translateX(5px);
+      }
+
+      .project-name {
+        color: #4ec9b0;
+        font-size: 1.3em;
+        margin-bottom: 10px;
+      }
+
+      .project-lang {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.8em;
+        margin-right: 8px;
+        margin-bottom: 10px;
+      }
+
+      .lang-js {
+        background: rgba(240, 219, 79, 0.2);
+        color: #f0db4f;
+      }
+      .lang-ruby {
+        background: rgba(204, 52, 45, 0.2);
+        color: #cc342d;
+      }
+      .lang-python {
+        background: rgba(75, 139, 190, 0.2);
+        color: #4b8bbe;
+      }
+
+      .project-stats {
+        color: #858585;
+        font-size: 0.85em;
+        margin: 8px 0;
+      }
+
+      .project-stats i {
+        margin-right: 5px;
+      }
+
+      .project-link {
+        color: #9cdcfe;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 10px;
+      }
+
+      .project-link:hover {
+        text-decoration: underline;
+      }
+
+      /* Education */
+      .education-item {
+        background: #252526;
+        padding: 20px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+        border-left: 3px solid #4ec9b0;
+      }
+
+      .degree {
+        color: #dcdcaa;
+        font-size: 1.1em;
+        margin-bottom: 5px;
+      }
+
+      .institution {
+        color: #9cdcfe;
+        margin-bottom: 5px;
+      }
+
+      .year {
+        color: #6a9955;
+      }
+
+      /* Certifications */
+      .cert-badge {
+        display: inline-block;
+        background: #252526;
+        padding: 10px 15px;
+        margin: 5px 5px 5px 0;
+        border-radius: 4px;
+        border-left: 3px solid #f0db4f;
+        font-size: 0.9em;
+      }
+
+      /* Footer */
+      .footer {
+        background: #252526;
+        padding: 25px;
+        text-align: center;
+        border-top: 1px solid #3c3c3c;
+        margin-top: 40px;
+      }
+
+      .command-line {
+        color: #6a9955;
+        margin-bottom: 15px;
+      }
+
+      .download-btn {
+        background: #007acc;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: "Consolas", monospace;
+        font-size: 1em;
+        transition: background 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .download-btn:hover {
+        background: #005a9e;
+      }
+
+      /* Line numbers */
+      .line-number {
+        color: #858585;
+        margin-right: 20px;
+        user-select: none;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .terminal-window {
+          margin: 10px;
+        }
+
+        .content {
+          padding: 20px;
+        }
+
+        .tab-bar {
+          overflow-x: auto;
+        }
+      }
+
+      /* Print styles */
+      @media print {
+        body {
+          background: white;
+        }
+
+        .terminal-window {
+          box-shadow: none;
+          border: 1px solid #ccc;
+        }
+
+        .download-btn {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="terminal-window">
+      <!-- Window controls -->
+      <div class="window-controls">
+        <span class="control-btn close"></span>
+        <span class="control-btn minimize"></span>
+        <span class="control-btn maximize"></span>
+        <span class="window-title">florian_dutronc_resume.js</span>
+      </div>
+      <!-- Tab bar -->
+      <div class="tab-bar">
+        <div class="tab active">
+          <i class="fab fa-js-square js-color"></i>
+          <span>resume.js</span>
+        </div>
+        <div class="tab">
+          <i class="fas fa-gem ruby-color"></i>
+          <span
+            ><a href="#about" style="color: inherit; text-decoration: none"
+              >about.rb</a
+            ></span
+          >
+        </div>
+        <div class="tab">
+          <i class="fab fa-python python-color"></i>
+          <span
+            ><a
+              href="#workExperience"
+              style="color: inherit; text-decoration: none"
+              >workExperience.py</a
+            ></span
+          >
+        </div>
+        <div class="tab">
+          <i class="fab fa-php" style="color: #74c0fc"></i>
+          <span
+            ><a
+              href="#technicalSkills"
+              style="color: inherit; text-decoration: none"
+              >technicalSkills.php</a
+            ></span
+          >
+        </div>
+        <div class="tab">
+          <i class="fab fa-java" style="color: white"></i>
+          <span
+            ><a href="#education" style="color: inherit; text-decoration: none"
+              >education.java</a
+            ></span
+          >
+        </div>
+      </div>
+      <!-- Content -->
+      <div class="content">
+        <!-- Header -->
+        <div class="header">
+          <h1>Florian Dutronc</h1>
+          <div class="role">"Senior Software Engineer"</div>
+          <div class="contact-line">
+            // Email:
+            <a href="mailto:florian.dutronc@gmail.com"
+              >florian.dutronc@gmail.com</a
+            >
+          </div>
+          <div class="contact-line">
+            // Phone: <a href="tel:+33668748758">+33 6 68 74 87 58</a>
+          </div>
+          <div class="contact-line">
+            // GitHub:
+            <a href="https://github.com/floriankdrone" target="_blank"
+              >@floriankdrone</a
+            >
+          </div>
+          <div class="contact-line">
+            // LinkedIn:
+            <a
+              href="https://www.linkedin.com/in/florian-dutronc-6a80a730/"
+              target="_blank"
+              >/in/floriandutronc</a
+            >
+          </div>
+          <div class="contact-line">
+            // Location: Nantes, Pays de la Loire, France
+          </div>
+        </div>
+        <!-- Summary -->
+        <section class="section">
+          <h2 id="about" class="section-title">aboutMe</h2>
+          <div class="summary">
+            <span class="comment">
+              Dynamic and enthusiastic engineer with 10+ years of experience
+              architecting and shipping scalable web applications. Specialized
+              in JavaScript/TypeScript, Ruby on Rails, and Python/Django
+              ecosystems. Passionate about clean code, test-driven development,
+              and mentoring junior developers. Worked in different sectors of
+              the computing industry. Proactive key player with good
+              communication skills and analytical temper. Collaborated with many
+              academics during my master's research on distributed computing.
+              The areas of expertise I have acquired through my thesis work are
+              virtualization, distributed scheduling and the handling of big
+              data.
+            </span>
+          </div>
+          <div class="section-end">}</div>
+        </section>
+        <!-- Experience -->
+        <section class="section">
+          <h2 id="workExperience" class="section-title">workExperience</h2>
+          <div class="experience-item">
+            <div class="job-title-line">
+              <span class="const">const</span>
+              <span class="job-title">seniorFullStackEngineer</span> = {
+            </div>
+            <div style="margin-left: 20px">
+              <div>
+                <span class="keyword">company:</span>
+                <span class="string">"Doctolib"</span>,
+              </div>
+              <div>
+                <span class="keyword">location:</span>
+                <span class="string">"Nantes, Pays de la Loire, France"</span>,
+              </div>
+              <div>
+                <span class="keyword">period:</span>
+                <span class="string">"September 2022 - Present"</span>,
+              </div>
+              <div><span class="keyword">responsibilities:</span> [</div>
+              <div class="responsibility">
+                Architected an agentic system for Doctolib's customer support
+                using Langgraph and MCP servers.
+              </div>
+              <div class="responsibility">
+                Led migration from monolithic Rails app to isolated engines
+              </div>
+              <div class="responsibility"></div>
+              <div class="responsibility">
+                Responsible of the deflection rate of our customer support.
+                Implemented various solutions to reduce the time a support
+                ticket is closed
+              </div>
+              <div class="responsibility">
+                Mentored junior engineers through code reviews and pair
+                programming sessions
+              </div>
+              <div class="responsibility">
+                Pushed for clean code and SLAs/SLOs monitoring
+              </div>
+              <div>],</div>
+              <div>
+                <span class="keyword">technologies:</span>
+                <span class="string"
+                  >"React, TypeScript, Rails, Python, Ruby, ElasticSearch, MCP,
+                  Langgraph, PostgreSQL, Redis, AWS, GCP, Docker"</span
+                >
+              </div>
+            </div>
+            <div>};</div>
+          </div>
+          <div class="experience-item">
+            <div class="job-title-line">
+              <span class="const">const</span>
+              <span class="job-title">seniorFullStackEngineer</span> = {
+            </div>
+            <div style="margin-left: 20px">
+              <div>
+                <span class="keyword">company:</span>
+                <span class="string">"WINAMAX"</span>,
+              </div>
+              <div>
+                <span class="keyword">location:</span>
+                <span class="string">"Paris, Île-de-France, France"</span>,
+              </div>
+              <div>
+                <span class="keyword">period:</span>
+                <span class="string"
+                  >"January 2020 - September 2022 (2 years 9 months)"</span
+                >,
+              </div>
+              <div><span class="keyword">responsibilities:</span> [</div>
+              <div class="responsibility">
+                Migration from PHP monolith to NodeJS micro services
+              </div>
+              <div class="responsibility">
+                Handling backend for ReactJS applications.
+              </div>
+              <div class="responsibility">
+                Implementation of a new registration app using WebSocket
+                communication
+              </div>
+              <div class="responsibility">Implemented new payment options</div>
+              <div class="responsibility">
+                Implementation of online live poker tournaments
+              </div>
+              <div>],</div>
+              <div>
+                <span class="keyword">technologies:</span>
+                <span class="string"
+                  >"NodeJS, React, PHP, PostgreSQL, WebSockets"</span
+                >
+              </div>
+            </div>
+            <div>};</div>
+          </div>
+          <div class="experience-item">
+            <div class="job-title-line">
+              <span class="const">const</span>
+              <span class="job-title">onlineProgrammer</span> = {
+            </div>
+            <div style="margin-left: 20px">
+              <div>
+                <span class="keyword">company:</span>
+                <span class="string">"Ubisoft"</span>,
+              </div>
+              <div>
+                <span class="keyword">location:</span>
+                <span class="string">"Paris, Île-de-France, France"</span>,
+              </div>
+              <div>
+                <span class="keyword">period:</span>
+                <span class="string"
+                  >"October 2016 - January 2020 (3 years 4 months)"</span
+                >,
+              </div>
+              <div><span class="keyword">responsibilities:</span> [</div>
+              <div class="responsibility">
+                Leverage WebSockets to use real-time communication between
+                mobile and web browser (scoring)
+              </div>
+              <div class="responsibility">
+                Maintaining a high availability on JustDanceNow service
+              </div>
+              <div class="responsibility">
+                Improve the monitoring and development processes
+              </div>
+              <div class="responsibility">
+                Continuously updating the technologies used to keep up with the
+                latest research/findings in the Online field.
+              </div>
+              <div>],</div>
+              <div>
+                <span class="keyword">technologies:</span>
+                <span class="string"
+                  >"NodeJS, WebSocket, C++, JavaScript, MongoDB, AWS, DynamoDB,
+                  MySQL"</span
+                >
+              </div>
+            </div>
+            <div>};</div>
+          </div>
+          <div class="experience-item">
+            <div class="job-title-line">
+              <span class="const">const</span>
+              <span class="job-title">engineProgrammer</span> = {
+            </div>
+            <div style="margin-left: 20px">
+              <div>
+                <span class="keyword">company:</span>
+                <span class="string">"Ubisoft"</span>,
+              </div>
+              <div>
+                <span class="keyword">location:</span>
+                <span class="string">"Paris, Île-de-France, France"</span>,
+              </div>
+              <div>
+                <span class="keyword">period:</span>
+                <span class="string"
+                  >"September 2015 - September 2016 (1 year 1 month)"</span
+                >,
+              </div>
+              <div><span class="keyword">responsibilities:</span> [</div>
+              <div class="responsibility">
+                Part of the Platform Team, responsible for improving the engine
+                stability on existing platforms (Android, iOS, WP8)
+              </div>
+              <div class="responsibility">
+                Follow the evolution of platform manufacturers and develop the
+                engine after each platform update and provide access to new
+                features (iOS10, Android N)
+              </div>
+              <div class="responsibility">
+                Contribute to the development and improvement of the build
+                pipeline on each platform
+              </div>
+              <div class="responsibility">
+                Designed and implemented a distributed Web Service which
+                provided the production teams with a tool to generate their
+                project's APK/IPA on their own. Giving them full autonomy over
+                their builds.
+              </div>
+              <div>],</div>
+              <div>
+                <span class="keyword">technologies:</span>
+                <span class="string"
+                  >"Objective-C, Java, C++, C#, JavaScript"</span
+                >
+              </div>
+            </div>
+            <div>};</div>
+          </div>
+          <div class="experience-item">
+            <div class="job-title-line">
+              <span class="const">const</span>
+              <span class="job-title">lteEngineer</span> = {
+            </div>
+            <div style="margin-left: 20px">
+              <div>
+                <span class="keyword">company:</span>
+                <span class="string">"Nokia"</span>,
+              </div>
+              <div>
+                <span class="keyword">location:</span>
+                <span class="string">"Beijing, China"</span>,
+              </div>
+              <div>
+                <span class="keyword">period:</span>
+                <span class="string"
+                  >"December 2013 - August 2015 (1 year 9 months)"</span
+                >,
+              </div>
+              <div><span class="keyword">responsibilities:</span> [</div>
+              <div class="responsibility">
+                Worked on designing and implementing new functionalities as well
+                as finding root causes to any problem that might arise, from any
+                part of the module's code.
+              </div>
+              <div class="responsibility">
+                Worked on designing and implementing test cases (Unit Testing,
+                Module Testing)
+              </div>
+              <div class="responsibility">
+                Used agile project management methods and Test Driven
+                Development to implement high quality LTE software
+              </div>
+              <div class="responsibility">
+                In charge of communication between development teams in Beijing
+                and the ones in the US, Europe and Asia
+              </div>
+              <div>],</div>
+              <div>
+                <span class="keyword">technologies:</span>
+                <span class="string">"C++, OOD, LTE"</span>
+              </div>
+            </div>
+            <div>};</div>
+          </div>
+          <div class="section-end">}</div>
+        </section>
+        <!-- Skills -->
+        <section class="section">
+          <h2 id="technicalSkills" class="section-title">technicalSkills</h2>
+          <div class="skills-container">
+            <div class="skill-group javascript">
+              <div class="skill-group-title">JavaScript Ecosystem</div>
+              <span class="skill-item">JavaScript ES2023</span>
+              <span class="skill-item">TypeScript</span>
+              <span class="skill-item">React.js</span>
+              <span class="skill-item">Node.js</span>
+              <span class="skill-item">Express.js</span>
+              <span class="skill-item">Next.js</span>
+              <span class="skill-item">Jest</span>
+              <span class="skill-item">Webpack</span>
+              <span class="skill-item">Vite</span>
+            </div>
+            <div class="skill-group ruby">
+              <div class="skill-group-title">Ruby &amp; Rails Stack</div>
+              <span class="skill-item">Ruby</span>
+              <span class="skill-item">Ruby on Rails</span>
+              <span class="skill-item">ActiveRecord</span>
+              <span class="skill-item">Minitest</span>
+            </div>
+            <div class="skill-group python">
+              <div class="skill-group-title">Python Technologies</div>
+              <span class="skill-item">Python 3.11</span>
+              <span class="skill-item">Langgraph</span>
+              <span class="skill-item">Django</span>
+              <span class="skill-item">FastAPI</span>
+              <span class="skill-item">pytest</span>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-title">DevOps &amp; Cloud</div>
+              <span class="skill-item">Docker</span>
+              <span class="skill-item">Kubernetes</span>
+              <span class="skill-item">AWS (EC2, S3, Lambda)</span>
+              <span class="skill-item">Terraform</span>
+              <span class="skill-item">GitHub Actions</span>
+              <span class="skill-item">Datadog</span>
+              <span class="skill-item">Sentry</span>
+              <span class="skill-item">Jenkins</span>
+              <span class="skill-item">Nginx</span>
+              <span class="skill-item">New Relic</span>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-title">Databases &amp; Caching</div>
+              <span class="skill-item">PostgreSQL</span>
+              <span class="skill-item">MongoDB</span>
+              <span class="skill-item">Redis</span>
+              <span class="skill-item">Elasticsearch</span>
+              <span class="skill-item">MySQL</span>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-title">AI</div>
+              <span class="skill-item">LLM</span>
+              <span class="skill-item">MCP</span>
+              <span class="skill-item">Agentic</span>
+              <span class="skill-item">Claude Code</span>
+              <span class="skill-item">Github Copilot</span>
+              <span class="skill-item">Dust</span>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-title">Other Tools</div>
+              <span class="skill-item">Git/GitHub/Gitlab</span>
+              <span class="skill-item">GraphQL</span>
+              <span class="skill-item">REST APIs</span>
+              <span class="skill-item">WebSockets</span>
+              <span class="skill-item">Figma</span>
+              <span class="skill-item">Jira</span>
+              <span class="skill-item">Agile/Scrum</span>
+            </div>
+          </div>
+          <div class="section-end">}</div>
+        </section>
+        <!-- Education -->
+        <section class="section">
+          <h2 id="education" class="section-title">education</h2>
+          <div class="education-item">
+            <div class="degree">Master, Advanced Computer Science</div>
+            <div class="institution">Tsinghua University</div>
+            <div class="year">Graduated: May 2013</div>
+            <div style="margin-top: 8px; color: #858585; font-size: 0.9em">
+              Relevant Coursework: Distributed computing, Database Systems, Web
+              Development, Machine Learning
+            </div>
+          </div>
+          <div class="education-item">
+            <div class="degree">Bachelor of Science (BS), Computer Science</div>
+            <div class="institution">King's College London, U. of London</div>
+            <div class="year">Graduated: May 2011</div>
+            <div style="margin-top: 8px; color: #858585; font-size: 0.9em">
+              Relevant Coursework: Data Structures, Algorithms, Database
+              Systems, Web Development, Machine Learning
+            </div>
+          </div>
+          <div class="section-end">}</div>
+        </section>
+      </div>
+      <!-- Footer -->
+      <div class="footer">
+        <div class="command-line">
+          $ node resume.js --format=pdf --output=florian_dutronc_resume.pdf
+        </div>
+        <button class="download-btn" onclick="window.print()">
+          <i class="fas fa-download"></i>
+          Download Resume
+        </button>
+        <div style="margin-top: 15px; color: #6a9955">
+          // Last updated: November 2025 | Built with ❤️ and lots of ☕
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
